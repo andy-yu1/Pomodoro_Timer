@@ -13,6 +13,7 @@
 		A101FDE0207A492300DFE303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A101FDDF207A492300DFE303 /* Assets.xcassets */; };
 		A101FDE3207A492400DFE303 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A101FDE1207A492400DFE303 /* LaunchScreen.storyboard */; };
 		A101FDEE207A492400DFE303 /* Pomodoro_TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A101FDED207A492400DFE303 /* Pomodoro_TimerTests.swift */; };
+		A132EB1B209DA60C00C17914 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132EB1A209DA60C00C17914 /* SettingsPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		A101FDE9207A492400DFE303 /* Pomodoro TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pomodoro TimerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A101FDED207A492400DFE303 /* Pomodoro_TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pomodoro_TimerTests.swift; sourceTree = "<group>"; };
 		A101FDEF207A492400DFE303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A132EB1A209DA60C00C17914 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				A101FDD8207A492000DFE303 /* AppDelegate.swift */,
 				A101FDDA207A492000DFE303 /* ViewController.swift */,
 				A101FDDC207A492000DFE303 /* Main.storyboard */,
+				A132EB1A209DA60C00C17914 /* SettingsPage.swift */,
 				A101FDDF207A492300DFE303 /* Assets.xcassets */,
 				A101FDE1207A492400DFE303 /* LaunchScreen.storyboard */,
 				A101FDE4207A492400DFE303 /* Info.plist */,
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A132EB1B209DA60C00C17914 /* SettingsPage.swift in Sources */,
 				A101FDDB207A492000DFE303 /* ViewController.swift in Sources */,
 				A101FDD9207A492000DFE303 /* AppDelegate.swift in Sources */,
 			);

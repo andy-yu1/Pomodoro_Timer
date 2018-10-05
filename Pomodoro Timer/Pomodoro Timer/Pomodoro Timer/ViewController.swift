@@ -11,19 +11,24 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
-    
-    var seconds = 10 //This variable will hold a starting value of seconds. It could be any amount above 0.
-    var breakLength = 3
-    var breakString = "00:03"
+    var breakLength = 5
+    var breakString = "00:01"
     var pomodoroLength = 10
     var pomodoroString = "00:10"
+    //This variable will hold a starting value of seconds. It could be any amount above 0.
+    var seconds = 10
     var timer = Timer()
-    var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
+    //This will be used to make sure only one timer is created at a time.
+    var isTimerRunning = false
     var resumeTapped = false
     var indent = 40
     var circleY = 400
     var breakTime = false
     var pomodoroCounter = 0
+    var pomodoroGoal = 5
+    var longBreak = 8
+    var longBreakString = "00:08"
+    var layerArray = [CAShapeLayer]()
     
     @IBAction func startButtonTapped(_ sender: UIButton) {
         if isTimerRunning == false {
@@ -89,6 +94,7 @@ class ViewController: UIViewController {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: width,y: circleY), radius: CGFloat(15), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         
         let shapeLayer = CAShapeLayer()
+        shapeLayer.name = "circle"
         shapeLayer.path = circlePath.cgPath
         
         //change the fill color
@@ -99,22 +105,41 @@ class ViewController: UIViewController {
         shapeLayer.lineWidth = 1.0
         
         view.layer.addSublayer(shapeLayer)
-        pomodoroCounter += 1
+        layerArray.append(shapeLayer)
 
+    }
+    func deletePomodoros() {
+        for layer in view.layer.sublayers! {
+            if (layer.name == "circle") {
+                layer.removeFromSuperlayer()
+            } 
+        }
+        layerArray.removeAll()
     }
     
     @objc func updateTimer() {
         if seconds < 1 {
             timer.invalidate()
-            if breakTime == false {
-            self.seconds = breakLength
-            self.startButton.setTitle("start break", for: .normal)
-            self.timerLabel.text = breakString
-            if pomodoroCounter == 5 || pomodoroCounter == 10 {
-                indent = 40
+            if layerArray.count == pomodoroGoal {
+                sleep(1)
+                seconds = longBreak
+                timerLabel.text = longBreakString
+                circleY = 400
+                pomodoroCounter = 0
+                deletePomodoros()
             }
-            pomodoroDone(width: indent)
-            indent += 75
+            if breakTime == false {
+                if pomodoroCounter == 0 || pomodoroCounter == 5 || pomodoroCounter == 10 {
+                    indent = 40
+                }
+                pomodoroDone(width: indent)
+                
+                indent += 75
+                self.startButton.setTitle("start break", for: .normal)
+                
+                self.seconds = breakLength
+                self.timerLabel.text = breakString
+            pomodoroCounter += 1
             breakTime = true
             }
             else {
@@ -131,8 +156,9 @@ class ViewController: UIViewController {
             resetButton.isEnabled = false
             resetButton.setTitleColor(.gray, for: .normal)
 
+        }
             //Send alert to indicate "time's up!"
-        } else {
+         else {
             seconds -= 1
             timerLabel.text = timeString(time: TimeInterval(seconds))
         }
@@ -170,7 +196,7 @@ class ViewController: UIViewController {
         resetButton.backgroundColor = .clear
         resetButton.layer.borderWidth = 1
         resetButton.layer.borderColor = UIColor.black.cgColor
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
 
 
